@@ -107,6 +107,12 @@
         - httpd
         - mariadb
 
+    - name: "Display mysql datadirectory"
+      shell: "grep -i datadir /etc/my.cnf"
+      register: output
+    - debug:
+        var: output.stdout_lines
+
   handlers:
     - name: "apache-reload"
       service:
